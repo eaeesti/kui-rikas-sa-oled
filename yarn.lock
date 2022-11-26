@@ -378,6 +378,11 @@ balanced-match@^1.0.0:
   resolved "https://registry.yarnpkg.com/balanced-match/-/balanced-match-1.0.2.tgz#e83e3a7e3f300b34cb9d87f615fa0cbf357690ee"
   integrity sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==
 
+bignumber.js@^9.1.0:
+  version "9.1.0"
+  resolved "https://registry.yarnpkg.com/bignumber.js/-/bignumber.js-9.1.0.tgz#8d340146107fe3a6cb8d40699643c302e8773b62"
+  integrity sha512-4LwHK4nfDOraBCtst+wOWIHbu1vhvAPJK8g8nROd4iuc3PSEjWif/qwbkh8jwCJz6yDBvtU4KPynETgrfh7y3A==
+
 binary-extensions@^2.0.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/binary-extensions/-/binary-extensions-2.2.0.tgz#75f502eeaf9ffde42fc98829645be4ea76bd9e2d"
@@ -480,6 +485,11 @@ core-js-pure@^3.25.1:
   version "3.26.1"
   resolved "https://registry.yarnpkg.com/core-js-pure/-/core-js-pure-3.26.1.tgz#653f4d7130c427820dcecd3168b594e8bb095a33"
   integrity sha512-VVXcDpp/xJ21KdULRq/lXdLzQAtX7+37LzpyfFM973il0tWSsDEoyzG38G14AjTpK9VTfiNM9jnFauq/CpaWGQ==
+
+countryinfo@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/countryinfo/-/countryinfo-1.0.5.tgz#4032fa171e6cee744706ee752416110752a4e1a3"
+  integrity sha512-d9cR/KzTXA1rMFUhK8HBRTidAT+fGO/1qprx2amJkPW1bSXjhYFYFuxH2WdlvTpVHug7WtCC+e+66tBeySns2Q==
 
 cross-spawn@^7.0.2, cross-spawn@^7.0.3:
   version "7.0.3"
@@ -1351,6 +1361,11 @@ lilconfig@^2.0.5, lilconfig@^2.0.6:
   version "2.0.6"
   resolved "https://registry.yarnpkg.com/lilconfig/-/lilconfig-2.0.6.tgz#32a384558bd58af3d4c6e077dd1ad1d397bc69d4"
   integrity sha512-9JROoBW7pobfsx+Sq2JsASvCo6Pfo6WWoUW79HuB1BCoBXD4PLWJPqDF6fNj67pqBYTbAHkE57M1kS/+L1neOg==
+
+linear-interpolator@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/linear-interpolator/-/linear-interpolator-1.0.2.tgz#32646681ed406ef237c851b2c5e4b337eb9be5fa"
+  integrity sha512-rFJ5EoHnyZ0wnPm8CZwP9oW9lqFEmYpzad8Fo4eciE6BWsheGRp7H6IX05lPwtHdCIQBFem8hQ9ujNCIMGdztA==
 
 locate-path@^6.0.0:
   version "6.0.0"
