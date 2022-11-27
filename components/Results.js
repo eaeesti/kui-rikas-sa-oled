@@ -1,10 +1,13 @@
+import CallToAction from "./CallToAction";
+import HorizontalRule from "./HorizontalRule";
 import ResultPieChart from "./ResultPieChart";
 
 export default function Results({ percentile }) {
   const topPercentile = (100 - percentile).toFixed(3);
 
   return (
-    <div className="flex flex-col items-center space-y-12 max-w-xl animate-fade-in">
+    <div className="flex flex-col items-center space-y-12 max-w-xl md:space-y-16 animate-fade-in">
+      <HorizontalRule />
       <div className="text-2xl text-center md:text-4xl">
         Kuulud{" "}
         <span className="font-bold tracking-tight text-primary-700">
@@ -22,6 +25,8 @@ export default function Results({ percentile }) {
         </span>{" "}
         inimkonnast.
       </div>
+      <HorizontalRule />
+      <CallToAction />
     </div>
   );
 }
