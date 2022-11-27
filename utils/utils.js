@@ -5,3 +5,7 @@ export const preventingDefault = (callback) => {
     return false;
   };
 };
+
+export const defer = (callback) => {
+  setTimeout(callback, 0);
+};

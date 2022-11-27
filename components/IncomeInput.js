@@ -23,13 +23,13 @@ export default function IncomeInput({ submitAction }) {
   return (
     <form
       onSubmit={preventingDefault(() => submitAction(income))}
-      className="space-y-4"
+      className="space-y-2 w-full max-w-xs md:max-w-md md:space-y-4"
     >
       <div>
         <label htmlFor="incomeInput" className="block mb-1">
           Igakuine netosissetulek:
         </label>
-        <div className="relative text-3xl">
+        <div className="relative text-2xl md:text-3xl">
           <input
             id="incomeInput"
             type="text"
@@ -44,7 +44,7 @@ export default function IncomeInput({ submitAction }) {
         </div>
       </div>
       <div>
-        <button className="block px-4 py-3 w-full text-lg font-bold tracking-tight text-white rounded-md transition-colors bg-primary-700 hover:bg-primary-800">
+        <button className="block px-4 py-3 w-full font-bold tracking-tight text-white rounded-md transition-colors md:text-lg bg-primary-700 hover:bg-primary-800">
           Arvuta!
         </button>
       </div>
