@@ -1,6 +1,5 @@
 import CallToAction from "./CallToAction";
 import HorizontalRule from "./HorizontalRule";
-import ResultHistogram from "./ResultHistogram";
 import ResultPieChart from "./ResultPieChart";
 
 export default function Results({ percentile }) {
@@ -25,10 +24,6 @@ export default function Results({ percentile }) {
           {percentile}%
         </span>{" "}
         inimkonnast.
-      </div>
-      <HorizontalRule />
-      <div className="w-64 h-64 md:h-128 md:w-128">
-        <ResultHistogram />
       </div>
       <HorizontalRule />
       <CallToAction />
