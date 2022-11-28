@@ -15,3 +15,14 @@ export const range = (start, end) => {
     .fill(1)
     .map((x, y) => start + x + y);
 };
+
+const round = (number, digits = 0) => {
+  return Math.round(number * 10 ** digits) / 10 ** digits;
+};
+
+export const sfround = (number, sigFigs) => {
+  if (number === 0) return 0;
+  const log10 = Math.log10(Math.abs(number));
+  const digits = Math.max(0, sigFigs - Math.ceil(log10));
+  return round(number, digits);
+};

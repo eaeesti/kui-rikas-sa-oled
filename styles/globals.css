@@ -5,3 +5,8 @@
 body {
   @apply bg-slate-100;
 }
+
+/* Prevent labels from getting clipped */
+.recharts-surface {
+  overflow: visible;
+}

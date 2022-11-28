@@ -12,7 +12,7 @@ export default function IncomeInput({ submitAction }) {
     // Must start with digit other than 0 and continue with any digit
     // Can have a . with 0 to 2 digits at the end
     // If it doesn't match, undo the input
-    if (!/(^[1-9]\d{0,10}$)|(^[1-9]\d{0,10}\.\d{0,2}$)|^$/.test(newIncome)) {
+    if (!/(^[1-9]\d{0,7}$)|(^[1-9]\d{0,7}\.\d{0,2}$)|^$/.test(newIncome)) {
       newIncome = incomeInput.dataset.value;
     } else {
       incomeInput.dataset.value = newIncome;

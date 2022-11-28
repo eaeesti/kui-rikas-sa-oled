@@ -5,11 +5,11 @@ import { range } from "./utils";
 // https://data.worldbank.org/indicator/PA.NUS.PPP?view=chart
 const ESTONIA_PPP = 0.54337;
 
-const monthlyToYearly = (monthlyIncome) => monthlyIncome * 12;
+export const monthlyToYearly = (monthlyIncome) => monthlyIncome * 12;
 
-const internationalizeIncome = (incomeEUR) => incomeEUR / ESTONIA_PPP;
+export const internationalizeIncome = (incomeEUR) => incomeEUR / ESTONIA_PPP;
 
-const getPercentile = (incomeIUSD) => {
+export const getPercentile = (incomeIUSD) => {
   const highest = INCOME_CENTILES[INCOME_CENTILES.length - 1];
   return (
     INCOME_CENTILES.find(
@@ -18,7 +18,7 @@ const getPercentile = (incomeIUSD) => {
   ).percentage;
 };
 
-const getIncome = (percentile) => {
+export const getIncome = (percentile) => {
   const highest = INCOME_CENTILES[INCOME_CENTILES.length - 1];
   return (
     INCOME_CENTILES.find((centile) => centile.percentage >= percentile) ||
@@ -27,8 +27,7 @@ const getIncome = (percentile) => {
 };
 
 // https://github.com/centre-for-effective-altruism/how-rich-am-i/blob/master/src/lib/calculate/index.js
-export const getEstonianIncomePercentile = (monthlyIncomeEUR) => {
-  const yearlyIncomeEUR = monthlyToYearly(monthlyIncomeEUR);
+export const getEstonianIncomePercentile = (yearlyIncomeEUR) => {
   const internationalizedIncomeIUSD = internationalizeIncome(yearlyIncomeEUR);
   const percentile = getPercentile(internationalizedIncomeIUSD);
   return percentile;
