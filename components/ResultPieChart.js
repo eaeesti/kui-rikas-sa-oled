@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import { ResponsiveContainer, PieChart, Pie, Cell } from "recharts";
 import colors from "tailwindcss/colors";
 

@@ -14,6 +14,12 @@ module.exports = {
       fontFamily: {
         sans: ["DM Sans", ...defaultTheme.fontFamily.sans],
       },
+      width: {
+        128: "32rem",
+      },
+      height: {
+        128: "32rem",
+      },
       animation: {
         "fade-in": "fadeIn 350ms ease",
       },

@@ -1,4 +1,5 @@
 import INCOME_CENTILES from "../data/income_centiles.json";
+import { range } from "./utils";
 
 // LCU per international $
 // https://data.worldbank.org/indicator/PA.NUS.PPP?view=chart
@@ -17,10 +18,26 @@ const getPercentile = (incomeIUSD) => {
   ).percentage;
 };
 
+const getIncome = (percentile) => {
+  const highest = INCOME_CENTILES[INCOME_CENTILES.length - 1];
+  return (
+    INCOME_CENTILES.find((centile) => centile.percentage >= percentile) ||
+    highest
+  ).international_dollars;
+};
+
 // https://github.com/centre-for-effective-altruism/how-rich-am-i/blob/master/src/lib/calculate/index.js
 export const getEstonianIncomePercentile = (monthlyIncomeEUR) => {
   const yearlyIncomeEUR = monthlyToYearly(monthlyIncomeEUR);
   const internationalizedIncomeIUSD = internationalizeIncome(yearlyIncomeEUR);
   const percentile = getPercentile(internationalizedIncomeIUSD);
   return percentile;
+};
+
+export const getHistogramData = () => {
+  return range(1, 100).map((percentage) => ({
+    percentage,
+    international_dollars: getIncome(percentage),
+  }));
+  // return INCOME_CENTILES;
 };
