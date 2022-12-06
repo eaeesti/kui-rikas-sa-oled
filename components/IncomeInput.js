@@ -2,7 +2,7 @@ import { useState } from "react";
 import { preventingDefault } from "../utils/utils";
 
 export default function IncomeInput({ submitAction }) {
-  let [income, setIncome] = useState(1500);
+  let [income, setIncome] = useState("");
 
   function onIncomeInputKeypress() {
     const incomeInput = document.getElementById("incomeInput");
@@ -12,10 +12,7 @@ export default function IncomeInput({ submitAction }) {
     // Must start with digit other than 0 and continue with any digit
     // Can have a . with 0 to 2 digits at the end
     // If it doesn't match, undo the input
-    if (!/(^[1-9]\d{0,7}$)|(^[1-9]\d{0,7}\.\d{0,2}$)|^$/.test(newIncome)) {
-      newIncome = incomeInput.dataset.value;
-    } else {
-      incomeInput.dataset.value = newIncome;
+    if (/(^[1-9]\d{0,7}$)|(^[1-9]\d{0,7}\.\d{0,2}$)|^$/.test(newIncome)) {
       setIncome(newIncome);
     }
   }
@@ -34,7 +31,6 @@ export default function IncomeInput({ submitAction }) {
             id="incomeInput"
             type="text"
             className="block px-4 py-3 w-full rounded-md border border-slate-300 text-primary-800"
-            data-value=""
             value={income}
             onInput={onIncomeInputKeypress}
           />
