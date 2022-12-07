@@ -16,7 +16,7 @@ export default function Calculator() {
   return (
     <div className="flex flex-col items-center px-4 py-24 space-y-20 md:px-8 bg-slate-100 text-slate-700">
       <Header />
-      <IncomeInput submitAction={showResults} />
+      <IncomeInput submitIncome={showResults} />
       {income && <Results income={income} />}
     </div>
   );

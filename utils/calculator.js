@@ -40,3 +40,14 @@ export const getHistogramData = () => {
   }));
   // return INCOME_CENTILES;
 };
+
+const equivalizationFactor = (adults, children) => {
+  const equivalizedAdults = !adults ? 0 : 0.3 + adults * 0.7;
+  const equivalizedChildren = children * 0.5;
+  return equivalizedAdults + equivalizedChildren;
+};
+
+export const equivalizeIncome = (income, adults = 0, children = 0) => {
+  console.log(equivalizationFactor(adults, children));
+  return income / equivalizationFactor(adults, children);
+};

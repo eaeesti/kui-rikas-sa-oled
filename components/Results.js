@@ -10,6 +10,7 @@ import HorizontalRule from "./HorizontalRule";
 import ResultBarChart from "./ResultBarChart";
 import ResultPieChart from "./ResultPieChart";
 import SliderInput from "./SliderInput";
+import { ArrowTopRightOnSquareIcon } from "@heroicons/react/20/solid";
 
 function calculate(income) {
   const yearlyIncome = monthlyToYearly(income);
@@ -87,43 +88,40 @@ export default function Results({ income }) {
                 rel="noopener noreferrer"
               >
                 rahvusvahelisteks dollariteks
+                <ArrowTopRightOnSquareIcon className="inline mb-0.5 ml-1 w-4 h-4" />
               </a>
               .
             </div>
           </div>
-        </>
-      )}
-      <HorizontalRule />
-      <div className="text-xl text-center md:text-2xl">
-        Kui annetaksid{" "}
-        <span className="font-bold tracking-tight text-primary-700">
-          {donationPercentage}%
-        </span>{" "}
-        oma sissetulekust ...
-      </div>
-      <SliderInput
-        percentage={donationPercentage}
-        setPercentage={setDonationPercentage}
-        min={1}
-        max={50}
-      />
-      <HorizontalRule />
-      <div className="text-xl text-center md:text-2xl">
-        ... kuuluksid ikka{" "}
-        <span className="font-bold tracking-tight text-primary-700">
-          {afterDonating.topPercentile}%
-        </span>{" "}
-        rikkaimate hulka ...
-      </div>
-      <div className="w-64 h-64 md:h-96 md:w-96">
-        <ResultPieChart
-          percentile={afterDonating.percentile}
-          topPercentile={afterDonating.topPercentile}
-          animated={false}
-        />
-      </div>
-      {afterDonating.timesRicherThanMedian >= 2 && (
-        <>
+          <HorizontalRule />
+          <div className="text-xl text-center md:text-2xl">
+            Kui annetaksid{" "}
+            <span className="font-bold tracking-tight text-primary-700">
+              {donationPercentage}%
+            </span>{" "}
+            oma sissetulekust ...
+          </div>
+          <SliderInput
+            percentage={donationPercentage}
+            setPercentage={setDonationPercentage}
+            min={1}
+            max={50}
+          />
+          <HorizontalRule />
+          <div className="text-xl text-center md:text-2xl">
+            ... kuuluksid ikka{" "}
+            <span className="font-bold tracking-tight text-primary-700">
+              {afterDonating.topPercentile}%
+            </span>{" "}
+            rikkaimate hulka ...
+          </div>
+          <div className="w-64 h-64 md:h-96 md:w-96">
+            <ResultPieChart
+              percentile={afterDonating.percentile}
+              topPercentile={afterDonating.topPercentile}
+              animated={false}
+            />
+          </div>
           <div className="text-xl text-center md:text-2xl">
             ... ning sinu sissetulek oleks ikka{" "}
             <span className="font-bold tracking-tight text-primary-700">
