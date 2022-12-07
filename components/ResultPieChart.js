@@ -31,7 +31,11 @@ const PieChartLabel = ({
   );
 };
 
-export default function ResultPieChart({ percentile, topPercentile }) {
+export default function ResultPieChart({
+  percentile,
+  topPercentile,
+  animated = true,
+}) {
   const data = [
     { name: `Sinust rikkamad`, value: +topPercentile },
     { name: `Sinust vaesemad`, value: +percentile },
@@ -45,7 +49,7 @@ export default function ResultPieChart({ percentile, topPercentile }) {
           startAngle={-270 - topPercentile * 1.8}
           dataKey="value"
           animationBegin={0}
-          animationDuration={1200}
+          animationDuration={animated ? 1200 : 0}
           labelLine={false}
           label={PieChartLabel}
         >

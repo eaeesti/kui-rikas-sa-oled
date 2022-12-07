@@ -10,3 +10,47 @@ body {
 .recharts-surface {
   overflow: visible;
 }
+
+/* Slider appearance */
+.form-range {
+  @apply w-full h-3 bg-transparent;
+  -webkit-appearance: none;
+  outline: none;
+  cursor: grab;
+}
+
+.form-range:disabled {
+  cursor: default;
+}
+
+.form-range:disabled::-webkit-slider-thumb {
+  cursor: default;
+}
+
+.form-range:disabled::-moz-range-thumb {
+  cursor: default;
+}
+
+.form-range::-webkit-slider-thumb {
+  @apply w-6 h-6 rounded-full border-none bg-primary-700;
+  -webkit-appearance: none;
+  appearance: none;
+  cursor: grab;
+}
+
+.form-range::-moz-range-thumb {
+  @apply w-6 h-6 rounded-full border-none bg-primary-700;
+  cursor: grab;
+}
+
+.form-range:active:not(:disabled) {
+  cursor: grabbing;
+}
+
+.form-range::-moz-range-thumb:active {
+  cursor: grabbing;
+}
+
+.form-range::-webkit-slider-thumb:active {
+  cursor: grabbing;
+}

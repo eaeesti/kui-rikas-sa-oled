@@ -9,6 +9,7 @@ import CallToAction from "./CallToAction";
 import HorizontalRule from "./HorizontalRule";
 import ResultBarChart from "./ResultBarChart";
 import ResultPieChart from "./ResultPieChart";
+import SliderInput from "./SliderInput";
 
 function calculate(income) {
   const yearlyIncome = monthlyToYearly(income);
@@ -39,7 +40,6 @@ export default function Results({ income }) {
 
   const incomeAfterDonating = income * (1 - donationPercentage / 100);
   const afterDonating = calculate(incomeAfterDonating);
-  console.log(afterDonating);
 
   return (
     <div className="flex flex-col items-center space-y-12 max-w-xl md:space-y-16 animate-fade-in">
@@ -64,7 +64,7 @@ export default function Results({ income }) {
       {timesRicherThanMedian >= 2 && (
         <>
           <HorizontalRule />
-          <div className="text-xl text-center md:text-3xl">
+          <div className="text-xl text-center md:text-2xl">
             Sinu sissetulek on{" "}
             <span className="font-bold tracking-tight text-primary-700">
               {timesRicherThanMedian.toFixed(1)} korda suurem
@@ -94,15 +94,21 @@ export default function Results({ income }) {
         </>
       )}
       <HorizontalRule />
-      <div className="text-xl text-center md:text-3xl">
+      <div className="text-xl text-center md:text-2xl">
         Kui annetaksid{" "}
         <span className="font-bold tracking-tight text-primary-700">
           {donationPercentage}%
         </span>{" "}
         oma sissetulekust ...
       </div>
+      <SliderInput
+        percentage={donationPercentage}
+        setPercentage={setDonationPercentage}
+        min={1}
+        max={50}
+      />
       <HorizontalRule />
-      <div className="text-2xl text-center md:text-3xl">
+      <div className="text-xl text-center md:text-2xl">
         ... kuuluksid ikka{" "}
         <span className="font-bold tracking-tight text-primary-700">
           {afterDonating.topPercentile}%
@@ -113,11 +119,12 @@ export default function Results({ income }) {
         <ResultPieChart
           percentile={afterDonating.percentile}
           topPercentile={afterDonating.topPercentile}
+          animated={false}
         />
       </div>
       {afterDonating.timesRicherThanMedian >= 2 && (
         <>
-          <div className="text-xl text-center md:text-3xl">
+          <div className="text-xl text-center md:text-2xl">
             ... ning sinu sissetulek oleks ikka{" "}
             <span className="font-bold tracking-tight text-primary-700">
               {afterDonating.timesRicherThanMedian.toFixed(1)} korda suurem
