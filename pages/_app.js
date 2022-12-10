@@ -4,7 +4,7 @@ import { NextSeo } from "next-seo";
 function MyApp({ Component, pageProps }) {
   return (
     <>
-      <NextSeo title="Kui rikas ma olen?" />
+      <NextSeo title="Kui rikas sa oled?" />
       <Component {...pageProps} />
     </>
   );

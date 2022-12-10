@@ -27,6 +27,17 @@ export default function Footer() {
           <ArrowTopRightOnSquareIcon className="inline mb-1 ml-1 w-4 h-4" />
         </a>
       </div>
+      <div>
+        <a
+          href="https://forms.gle/nRqFgpJ67cRPgMEv9"
+          className="font-bold whitespace-nowrap text-primary-700 hover:opacity-70"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Jäta meile tagasisidet!
+          <ArrowTopRightOnSquareIcon className="inline mb-1 ml-1 w-4 h-4" />
+        </a>
+      </div>
     </div>
   );
 }
