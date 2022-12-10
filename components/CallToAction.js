@@ -8,11 +8,11 @@ export default function CallToAction() {
       </p>
       <a
         href="https://annetatargalt.ee/"
-        className="px-6 py-3 font-bold text-white rounded-md transition-colors md:px-8 md:py-4 md:text-xl bg-primary-700 hover:bg-primary-800"
+        className="px-6 py-3 font-bold tracking-tight text-white rounded-md transition-colors select-none md:px-8 md:py-4 md:text-xl bg-primary-700 hover:bg-primary-800"
         target="_blank"
         rel="noopener noreferrer"
       >
-        Uuri targalt annetamise kohta
+        Uurin targalt annetamise kohta
         <ArrowTopRightOnSquareIcon className="inline mb-0.5 ml-1.5 w-5 h-5" />
       </a>
     </div>
