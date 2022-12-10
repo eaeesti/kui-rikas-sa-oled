@@ -52,7 +52,6 @@ export default function IncomeInput({ submitIncome }) {
       </div>
       {changingHousehold ? (
         <div className="flex flex-col space-y-4">
-          <div>Leibkonnakoosseis:</div>
           <div className="flex flex-row space-x-4">
             <div className="flex flex-col w-full">
               <label htmlFor="adultsInput" className="block mb-1">
@@ -98,10 +97,10 @@ export default function IncomeInput({ submitIncome }) {
           </div>
         </div>
       ) : (
-        <div className="flex flex-row space-x-1">
-          <div>Leibkonnakoosseis: 1 täiskasvanu</div>
+        <div className="flex flex-row space-x-1 text-sm">
+          <div className="text-slate-500">Leibkonnakoosseis: 1 täiskasvanu</div>
           <a
-            className="font-bold cursor-pointer text-primary-700 hover:opacity-70"
+            className="font-bold opacity-70 cursor-pointer text-primary-700 hover:opacity-50"
             onClick={() => setChangingHousehold(true)}
           >
             Muuda
