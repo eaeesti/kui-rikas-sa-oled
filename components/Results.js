@@ -10,7 +10,9 @@ import HorizontalRule from "./HorizontalRule";
 import ResultBarChart from "./ResultBarChart";
 import ResultPieChart from "./ResultPieChart";
 import SliderInput from "./SliderInput";
+import Impact from "./Impact";
 import { ArrowTopRightOnSquareIcon } from "@heroicons/react/20/solid";
+import { formatEstonianNumber, round } from "../utils/numbers";
 
 function calculate(income) {
   const yearlyIncome = monthlyToYearly(income);
@@ -28,7 +30,7 @@ function calculate(income) {
   };
 }
 
-export default function Results({ income }) {
+export default function Results({ income, evaluations }) {
   let [donationPercentage, setDonationPercentage] = useState(10);
 
   const {
@@ -41,6 +43,8 @@ export default function Results({ income }) {
 
   const incomeAfterDonating = income * (1 - donationPercentage / 100);
   const afterDonating = calculate(incomeAfterDonating);
+
+  const yearlyDonation = round(12 * (income - incomeAfterDonating), 2);
 
   return (
     <div className="flex flex-col items-center space-y-12 max-w-xl md:space-y-16 animate-fade-in">
@@ -136,6 +140,18 @@ export default function Results({ income }) {
                 internationalizedIncome={afterDonating.internationalizedIncome}
               />
             </div>
+          </div>
+          <HorizontalRule />
+          <div className="text-xl text-center md:text-2xl">
+            Igal aastal sinu{" "}
+            <span className="font-bold tracking-tight text-primary-700">
+              {formatEstonianNumber(yearlyDonation)}€
+            </span>{" "}
+            annetus saaks aidata ...
+          </div>
+          <Impact evaluations={evaluations} donation={yearlyDonation} />
+          <div className="text-xl text-center md:text-2xl">
+            ... kui annetaksid maailma tõhusaimatele heategevusühingutele.
           </div>
         </>
       )}

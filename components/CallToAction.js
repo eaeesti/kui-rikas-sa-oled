@@ -1,7 +1,9 @@
+import { ArrowTopRightOnSquareIcon } from "@heroicons/react/20/solid";
+
 export default function CallToAction() {
   return (
     <div className="flex flex-col items-center space-y-6 w-full text-center md:space-y-12">
-      <p className="text-lg md:text-2xl">
+      <p className="text-xl md:text-2xl">
         Targalt annetades on sul väga suur positiivne mõju inimeste aitamiseks.
       </p>
       <a
@@ -11,6 +13,7 @@ export default function CallToAction() {
         rel="noopener noreferrer"
       >
         Uuri targalt annetamise kohta
+        <ArrowTopRightOnSquareIcon className="inline mb-0.5 ml-1.5 w-5 h-5" />
       </a>
     </div>
   );

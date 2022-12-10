@@ -48,6 +48,5 @@ const equivalizationFactor = (adults, children) => {
 };
 
 export const equivalizeIncome = (income, adults = 0, children = 0) => {
-  console.log(equivalizationFactor(adults, children));
   return income / equivalizationFactor(adults, children);
 };
