@@ -14,6 +14,7 @@ import Impact from "./Impact";
 import { ArrowTopRightOnSquareIcon } from "@heroicons/react/20/solid";
 import { formatEstonianNumber, round } from "../utils/numbers";
 import ShareButtons from "./ShareButtons";
+import Footer from "./Footer";
 
 function calculate(income) {
   const yearlyIncome = monthlyToYearly(income);
@@ -160,6 +161,8 @@ export default function Results({ income, evaluations }) {
       <CallToAction />
       <HorizontalRule />
       <ShareButtons />
+      <HorizontalRule />
+      <Footer />
     </div>
   );
 }
