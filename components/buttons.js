@@ -12,7 +12,8 @@ function ShareButton({ text, color, Icon, url }) {
       target="_blank"
       onClick={preventingDefault(() => openPopup(url, text))}
       rel="noreferrer"
-      className={`flex flex-row justify-center items-center px-6 py-3 space-x-4 font-bold tracking-tight text-white whitespace-nowrap rounded-md transition-opacity select-none sm:text-xl sm:px-5 sm:py-4 sm:space-x-5 hover:opacity-90 bg-[${color}]`}
+      className={`flex flex-row justify-center items-center px-6 py-3 space-x-4 font-bold tracking-tight text-white whitespace-nowrap rounded-md transition-opacity select-none sm:text-xl sm:px-5 sm:py-4 sm:space-x-5 hover:opacity-90`}
+      style={{ backgroundColor: color }}
     >
       <Icon className="w-5 h-5 sm:w-7 sm:h-7" />
       <div>{text}</div>
