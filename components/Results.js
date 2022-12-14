@@ -12,14 +12,17 @@ import ResultPieChart from "./ResultPieChart";
 import SliderInput from "./SliderInput";
 import Impact from "./Impact";
 import { ArrowTopRightOnSquareIcon } from "@heroicons/react/20/solid";
-import { formatEstonianNumber, round } from "../utils/numbers";
+import { formatEstonianNumber, round, roundMoney } from "../utils/numbers";
 import ShareButtons from "./ShareButtons";
 import Footer from "./Footer";
 
 function calculate(income) {
   const yearlyIncome = monthlyToYearly(income);
-  const percentile = getEstonianIncomePercentile(yearlyIncome);
-  const topPercentile = (100 - percentile).toFixed(3);
+  const percentile = Math.min(
+    99.9,
+    getEstonianIncomePercentile(yearlyIncome)
+  ).toFixed(1);
+  const topPercentile = (100 - percentile).toFixed(1);
   const medianIncome = getIncome(50);
   const internationalizedIncome = internationalizeIncome(yearlyIncome);
   const timesRicherThanMedian = internationalizedIncome / medianIncome;
@@ -57,7 +60,7 @@ export default function Results({ income, evaluations }) {
       <h2 className="text-2xl text-center md:text-4xl">
         Kuulud{" "}
         <span className="font-bold tracking-tight text-primary-700">
-          {topPercentile}%
+          {formatEstonianNumber(topPercentile)}%
         </span>{" "}
         rikkaimate hulka!
       </h2>
@@ -67,7 +70,7 @@ export default function Results({ income, evaluations }) {
       <div className="text-xl text-center md:text-3xl">
         Oled rikkam kui{" "}
         <span className="font-bold tracking-tight text-primary-700">
-          {percentile}%
+          {formatEstonianNumber(percentile)}%
         </span>{" "}
         inimkonnast.
       </div>
@@ -77,7 +80,8 @@ export default function Results({ income, evaluations }) {
           <h2 className="text-xl text-center md:text-2xl">
             Sinu sissetulek on{" "}
             <span className="font-bold tracking-tight text-primary-700">
-              {timesRicherThanMedian.toFixed(1)} korda suurem
+              {formatEstonianNumber(round(timesRicherThanMedian, 1))} korda
+              suurem
             </span>{" "}
             kui maailma mediaan.
           </h2>
@@ -120,7 +124,7 @@ export default function Results({ income, evaluations }) {
           <h2 className="text-xl text-center md:text-2xl">
             ... kuuluksid ikka{" "}
             <span className="font-bold tracking-tight text-primary-700">
-              {afterDonating.topPercentile}%
+              {formatEstonianNumber(afterDonating.topPercentile)}%
             </span>{" "}
             rikkaimate hulka ...
           </h2>
@@ -134,7 +138,10 @@ export default function Results({ income, evaluations }) {
           <div className="text-xl text-center md:text-2xl">
             ... ning sinu sissetulek oleks ikka{" "}
             <span className="font-bold tracking-tight text-primary-700">
-              {afterDonating.timesRicherThanMedian.toFixed(1)} korda suurem
+              {formatEstonianNumber(
+                round(afterDonating.timesRicherThanMedian, 1)
+              )}{" "}
+              korda suurem
             </span>{" "}
             kui maailma mediaan.
           </div>
@@ -150,7 +157,7 @@ export default function Results({ income, evaluations }) {
           <h2 className="text-xl text-center md:text-2xl">
             Igal aastal sinu{" "}
             <span className="font-bold tracking-tight text-primary-700">
-              {formatEstonianNumber(yearlyDonation)}€
+              {formatEstonianNumber(roundMoney(yearlyDonation))}€
             </span>{" "}
             annetus saaks aidata ...
           </h2>
