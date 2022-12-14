@@ -15,7 +15,7 @@ function MyApp({ Component, pageProps }) {
             "Saa teada, kui suur on sinu sissetulek võrreldes maailma elanikega. Kas kuulud rikkaimate hulka?",
           images: [
             {
-              url: "https://kui-rikas-sa-oled.vercel.app/kui-rikas-sa-oled.png",
+              url: "https://kuirikassaoled.annetatargalt.ee/kui-rikas-sa-oled.png",
               width: 1200,
               height: 630,
               alt: "Kui rikas sa oled?",
