@@ -51,13 +51,13 @@ export default function Results({ income, evaluations }) {
   return (
     <div className="flex flex-col items-center space-y-12 max-w-xl md:space-y-16 animate-fade-in">
       <HorizontalRule />
-      <div className="text-2xl text-center md:text-4xl">
+      <h2 className="text-2xl text-center md:text-4xl">
         Kuulud{" "}
         <span className="font-bold tracking-tight text-primary-700">
           {topPercentile}%
         </span>{" "}
         rikkaimate hulka!
-      </div>
+      </h2>
       <div className="w-64 h-64 md:h-96 md:w-96">
         <ResultPieChart percentile={percentile} topPercentile={topPercentile} />
       </div>
@@ -71,13 +71,13 @@ export default function Results({ income, evaluations }) {
       {timesRicherThanMedian >= 2 && (
         <>
           <HorizontalRule />
-          <div className="text-xl text-center md:text-2xl">
+          <h2 className="text-xl text-center md:text-2xl">
             Sinu sissetulek on{" "}
             <span className="font-bold tracking-tight text-primary-700">
               {timesRicherThanMedian.toFixed(1)} korda suurem
             </span>{" "}
             kui maailma mediaan.
-          </div>
+          </h2>
           <div className="flex flex-col space-y-8">
             <div className="w-80 h-64 sm:w-96 sm:h-80 md:h-96 md:w-144">
               <ResultBarChart
@@ -100,13 +100,13 @@ export default function Results({ income, evaluations }) {
             </div>
           </div>
           <HorizontalRule />
-          <div className="text-xl text-center md:text-2xl">
+          <h2 className="text-xl text-center md:text-2xl">
             Kui annetaksid{" "}
             <span className="font-bold tracking-tight text-primary-700">
               {donationPercentage}%
             </span>{" "}
             oma sissetulekust ...
-          </div>
+          </h2>
           <SliderInput
             percentage={donationPercentage}
             setPercentage={setDonationPercentage}
@@ -114,13 +114,13 @@ export default function Results({ income, evaluations }) {
             max={50}
           />
           <HorizontalRule />
-          <div className="text-xl text-center md:text-2xl">
+          <h2 className="text-xl text-center md:text-2xl">
             ... kuuluksid ikka{" "}
             <span className="font-bold tracking-tight text-primary-700">
               {afterDonating.topPercentile}%
             </span>{" "}
             rikkaimate hulka ...
-          </div>
+          </h2>
           <div className="w-64 h-64 md:h-96 md:w-96">
             <ResultPieChart
               percentile={afterDonating.percentile}
@@ -144,13 +144,13 @@ export default function Results({ income, evaluations }) {
             </div>
           </div>
           <HorizontalRule />
-          <div className="text-xl text-center md:text-2xl">
+          <h2 className="text-xl text-center md:text-2xl">
             Igal aastal sinu{" "}
             <span className="font-bold tracking-tight text-primary-700">
               {formatEstonianNumber(yearlyDonation)}€
             </span>{" "}
             annetus saaks aidata ...
-          </div>
+          </h2>
           <Impact evaluations={evaluations} donation={yearlyDonation} />
           <div className="text-xl text-center md:text-2xl">
             ... kui annetaksid maailma tõhusaimatele heategevusühingutele.
