@@ -21,6 +21,10 @@ export const defer = (callback) => {
   setTimeout(callback, 0);
 };
 
+export const scrollSmoothlyTo = (element) => {
+  element.scrollIntoView({ behavior: "smooth" });
+};
+
 export const range = (start, end) => {
   return Array(end - start)
     .fill(1)

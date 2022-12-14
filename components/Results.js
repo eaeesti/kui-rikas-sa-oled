@@ -49,7 +49,10 @@ export default function Results({ income, evaluations }) {
   const yearlyDonation = round(12 * (income - incomeAfterDonating), 2);
 
   return (
-    <div className="flex flex-col items-center space-y-12 max-w-xl md:space-y-16 animate-fade-in">
+    <div
+      id="tulemused"
+      className="flex flex-col items-center space-y-12 max-w-xl md:space-y-16 animate-fade-in"
+    >
       <HorizontalRule />
       <h2 className="text-2xl text-center md:text-4xl">
         Kuulud{" "}

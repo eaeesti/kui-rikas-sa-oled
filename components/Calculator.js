@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { getEstonianIncomePercentile } from "../utils/calculator";
-import { defer } from "../utils/utils";
+import { defer, scrollSmoothlyTo } from "../utils/utils";
 import Header from "./Header";
 import IncomeInput from "./IncomeInput";
 import Results from "./Results";
@@ -10,7 +10,10 @@ export default function Calculator({ evaluations }) {
 
   function showResults(income) {
     setIncome();
-    defer(() => setIncome(income));
+    defer(() => {
+      setIncome(income);
+      defer(() => scrollSmoothlyTo(document.querySelector("#tulemused")));
+    });
   }
 
   return (
