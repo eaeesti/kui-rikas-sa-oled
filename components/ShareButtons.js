@@ -9,7 +9,7 @@ export default function ShareButtons() {
 
   return (
     <div className="flex flex-col items-center space-y-8 w-full text-center">
-      <p className="text-xl md:text-2xl">Jaga teistega!</p>
+      <p className="text-xl md:text-2xl">Jaga lehekülge teistega!</p>
       <div className="flex flex-col space-y-4 md:space-y-0 md:flex-row md:space-x-4">
         <FacebookShareButton buttonText="Jagan Facebookis" url={url} />
         <TwitterShareButton

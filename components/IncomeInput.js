@@ -98,20 +98,27 @@ export default function IncomeInput({ submitIncome }) {
         </div>
       ) : (
         <div className="flex flex-row space-x-1 text-sm">
-          <div className="text-slate-500">Leibkonnakoosseis: 1 täiskasvanu</div>
-          <a
-            className="font-bold opacity-70 cursor-pointer text-primary-700 hover:opacity-50"
+          <div>Leibkonnakoosseis: 1 täiskasvanu</div>
+          <button
+            type="button"
+            className="font-bold cursor-pointer opacity text-primary-700 hover:opacity-70"
             onClick={() => setChangingHousehold(true)}
           >
             Muuda
-          </a>
+          </button>
         </div>
       )}
       <div>
-        <button className="block px-4 py-3 w-full font-bold tracking-tight text-white rounded-lg transition-colors md:text-lg bg-primary-700 hover:bg-primary-800">
+        <button
+          type="submit"
+          className="block px-4 py-3 w-full font-bold tracking-tight text-white rounded-lg transition-colors md:text-lg bg-primary-700 hover:bg-primary-800"
+        >
           Arvuta!
         </button>
       </div>
+      <p className="text-sm text-center">
+        Me ei salvesta teie sisestatud andmeid.
+      </p>
     </form>
   );
 }
