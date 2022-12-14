@@ -6,6 +6,17 @@ export const preventingDefault = (callback) => {
   };
 };
 
+export const openPopup = (url, title) => {
+  window.open(url, title, "toolbar=0,status=0,width=720,height=500");
+};
+
+// https://stackoverflow.com/a/61843371/12123296
+export function fixedEncodeURIComponent(str) {
+  return encodeURIComponent(str).replace(/[!'()*]/g, function (c) {
+    return "%" + c.charCodeAt(0).toString(16);
+  });
+}
+
 export const defer = (callback) => {
   setTimeout(callback, 0);
 };
