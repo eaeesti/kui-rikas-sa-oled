@@ -1,9 +1,9 @@
 import { useState } from "react";
 import {
+  dailyToMonthly,
   getEstonianIncomePercentile,
   getIncome,
   internationalizeIncome,
-  monthlyToYearly,
 } from "../utils/calculator";
 import CallToAction from "./CallToAction";
 import HorizontalRule from "./HorizontalRule";
@@ -17,15 +17,21 @@ import ShareButtons from "./ShareButtons";
 import Footer from "./Footer";
 
 function calculate(income) {
-  const yearlyIncome = monthlyToYearly(income);
-  const percentile = Math.min(
-    99.9,
-    getEstonianIncomePercentile(yearlyIncome)
-  ).toFixed(1);
+  const percentile = getEstonianIncomePercentile(income).toFixed(1);
   const topPercentile = (100 - percentile).toFixed(1);
-  const medianIncome = getIncome(50);
-  const internationalizedIncome = internationalizeIncome(yearlyIncome);
+  const medianIncome = dailyToMonthly(getIncome(50));
+  const internationalizedIncome = internationalizeIncome(income);
+
   const timesRicherThanMedian = internationalizedIncome / medianIncome;
+
+  console.table({
+    percentile,
+    topPercentile,
+    medianIncome,
+    internationalizedIncome,
+    timesRicherThanMedian,
+  });
+
   return {
     percentile,
     topPercentile,
@@ -80,6 +86,8 @@ export default function Results({ income, evaluations }) {
       <h2 className="text-2xl text-center">
         Kuulud{" "}
         <span className="font-bold tracking-tight text-primary-700">
+          {topPercentile <= 1 && "<"}
+          {topPercentile >= 99 && ">"}
           {formatEstonianNumber(topPercentile)}%
         </span>{" "}
         rikkaimate hulka!
@@ -90,6 +98,8 @@ export default function Results({ income, evaluations }) {
       <div className="text-xl text-center">
         Oled rikkam kui{" "}
         <span className="font-bold tracking-tight text-primary-700">
+          {percentile >= 99 && ">"}
+          {percentile <= 1 && "<"}
           {formatEstonianNumber(percentile)}%
         </span>{" "}
         inimkonnast.

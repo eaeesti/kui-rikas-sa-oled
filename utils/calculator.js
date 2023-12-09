@@ -1,35 +1,94 @@
-import INCOME_CENTILES from "../data/income_centiles.json";
+// https://github.com/owid/notebooks/blob/main/PabloArriagada/global_distribution_giving_what_we_can/pip_global_percentiles.csv
+import PIP_GLOBAL_PERCENTILES from "../data/pip_global_percentiles.json";
+
 import { range } from "./utils";
 
-// LCU per international $
-// https://data.worldbank.org/indicator/PA.NUS.PPP?view=chart
-const ESTONIA_PPP = 0.54337;
+// https://github.com/owid/notebooks/blob/main/PabloArriagada/global_distribution_giving_what_we_can/wdi_ppp.csv
+const ESTONIA_PPP = 0.7982072518265738;
+
+const DAYS_PER_YEAR = 365.2425;
+const DAYS_PER_MONTH = DAYS_PER_YEAR / 12;
+
+const interpolate = (x, x0, x1, y0, y1) => {
+  return y0 + ((y1 - y0) * (x - x0)) / (x1 - x0);
+};
 
 export const monthlyToYearly = (monthlyIncome) => monthlyIncome * 12;
 
+export const monthlyToDaily = (monthlyIncome) => monthlyIncome / DAYS_PER_MONTH;
+
+export const dailyToMonthly = (dailyIncome) => dailyIncome * DAYS_PER_MONTH;
+
 export const internationalizeIncome = (incomeEUR) => incomeEUR / ESTONIA_PPP;
 
-export const getPercentile = (incomeIUSD) => {
-  const highest = INCOME_CENTILES[INCOME_CENTILES.length - 1];
-  return (
-    INCOME_CENTILES.find(
-      (centile) => centile.international_dollars >= incomeIUSD
-    ) || highest
-  ).percentage;
+export const getPercentile = (dailyIncomeIUSD) => {
+  const smaller_percentile = PIP_GLOBAL_PERCENTILES.findLast(
+    (percentile) => percentile.daily_household_income <= dailyIncomeIUSD
+  );
+  const greater_percentile = PIP_GLOBAL_PERCENTILES.find(
+    (percentile) => percentile.daily_household_income >= dailyIncomeIUSD
+  );
+
+  if (!greater_percentile) {
+    return smaller_percentile.percentile;
+  }
+
+  if (!smaller_percentile) {
+    return greater_percentile.percentile;
+  }
+
+  if (smaller_percentile.percentile === greater_percentile.percentile) {
+    return smaller_percentile.percentile;
+  }
+
+  const interpolated_percentile = interpolate(
+    dailyIncomeIUSD,
+    smaller_percentile.daily_household_income,
+    greater_percentile.daily_household_income,
+    smaller_percentile.percentile,
+    greater_percentile.percentile
+  );
+
+  return interpolated_percentile;
 };
 
 export const getIncome = (percentile) => {
-  const highest = INCOME_CENTILES[INCOME_CENTILES.length - 1];
-  return (
-    INCOME_CENTILES.find((centile) => centile.percentage >= percentile) ||
-    highest
-  ).international_dollars;
+  const smallerIncome = PIP_GLOBAL_PERCENTILES.findLast(
+    (p) => p.percentile <= percentile
+  );
+  const greaterIncome = PIP_GLOBAL_PERCENTILES.find(
+    (p) => p.percentile >= percentile
+  );
+
+  if (!greaterIncome) {
+    return smallerIncome.daily_household_income;
+  }
+
+  if (!smallerIncome) {
+    return greaterIncome.daily_household_income;
+  }
+
+  if (smallerIncome.percentile === greaterIncome.percentile) {
+    return smallerIncome.daily_household_income;
+  }
+
+  const interpolatedIncome = interpolate(
+    percentile,
+    smallerIncome.percentile,
+    greaterIncome.percentile,
+    smallerIncome.daily_household_income,
+    greaterIncome.daily_household_income
+  );
+
+  return interpolatedIncome;
 };
 
 // https://github.com/centre-for-effective-altruism/how-rich-am-i/blob/master/src/lib/calculate/index.js
-export const getEstonianIncomePercentile = (yearlyIncomeEUR) => {
-  const internationalizedIncomeIUSD = internationalizeIncome(yearlyIncomeEUR);
-  const percentile = getPercentile(internationalizedIncomeIUSD);
+export const getEstonianIncomePercentile = (monthlyIncomeEUR) => {
+  const dailyIncomeEUR = monthlyToDaily(monthlyIncomeEUR);
+  const internationalizedDailyIncomeIUSD =
+    internationalizeIncome(dailyIncomeEUR);
+  const percentile = getPercentile(internationalizedDailyIncomeIUSD);
   return percentile;
 };
 
