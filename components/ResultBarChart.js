@@ -9,7 +9,6 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
-import colors from "tailwindcss/colors";
 
 const YTick = (props) => {
   let { payload, tickFormatter, verticalAnchor, visibleTicksCount, ...rest } =
@@ -35,7 +34,7 @@ export default function ResultBarChart({
 }) {
   const data = [
     {
-      name: "Mediaansissetulek",
+      name: "Mediaan",
       income: medianIncome,
     },
     {
@@ -60,7 +59,7 @@ export default function ResultBarChart({
         <YAxis tick={YTick} />
         <Bar
           dataKey="income"
-          fill={colors.teal[700]}
+          fill="#047857"
           animationBegin={0}
           animationDuration={1200}
         />

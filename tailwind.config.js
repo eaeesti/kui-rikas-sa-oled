@@ -1,5 +1,4 @@
 const defaultTheme = require("tailwindcss/defaultTheme");
-const colors = require(`tailwindcss/colors`);
 
 module.exports = {
   content: [
@@ -9,10 +8,22 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: colors.teal,
+        primary: {
+          50: "#eef8f2",
+          100: "#d4ede1",
+          200: "#b2ddc9",
+          300: "#81ceb0",
+          400: "#50c79c",
+          500: "#1aab7c",
+          600: "#099067",
+          700: "#047857",
+          800: "#065f46",
+          900: "#064e3b",
+          950: "#022c1f",
+        },
       },
       fontFamily: {
-        sans: ["DM Sans", ...defaultTheme.fontFamily.sans],
+        sans: ["Inter", ...defaultTheme.fontFamily.sans],
       },
       width: {
         128: "32rem",

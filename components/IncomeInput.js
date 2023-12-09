@@ -33,15 +33,17 @@ export default function IncomeInput({ submitIncome }) {
       className="space-y-4 w-full max-w-xs md:max-w-md"
     >
       <div>
-        <label htmlFor="incomeInput" className="block mb-1">
-          Igakuine netosissetulek:
+        <label htmlFor="incomeInput" className="block mb-1 text-sm">
+          {changingHousehold
+            ? "Leibkonna igakuine netosissetulek:"
+            : "Igakuine netosissetulek:"}
         </label>
-        <div className="relative text-2xl md:text-3xl">
+        <div className="relative text-xl">
           <input
             id="incomeInput"
             type="text"
             inputMode="numeric"
-            className="block px-4 py-3 w-full rounded-lg border border-slate-300 text-primary-800"
+            className="block py-4 pr-10 pl-5 w-full rounded-md border-0 ring-1 ring-inset ring-slate-300 focus:ring-primary-600 text-slate-900 placeholder:text-slate-400 focus:ring-[3px] focus:ring-inset focus-within:outline-none"
             value={income}
             onInput={onIncomeInputKeypress}
           />
@@ -54,13 +56,13 @@ export default function IncomeInput({ submitIncome }) {
         <div className="flex flex-col space-y-4">
           <div className="flex flex-row space-x-4">
             <div className="flex flex-col w-full">
-              <label htmlFor="adultsInput" className="block mb-1">
+              <label htmlFor="adultsInput" className="block mb-1 text-sm">
                 Täiskasvanuid:
               </label>
               <input
                 id="adultsInput"
                 type="number"
-                className="block px-4 py-3 w-full text-2xl rounded-lg border border-slate-300 text-primary-800 md:text-3xl"
+                className="block py-4 px-5 w-full rounded-md border-0 ring-1 ring-inset ring-slate-300 focus:ring-primary-600 text-slate-900 placeholder:text-slate-400 focus:ring-[3px] focus:ring-inset focus-within:outline-none text-xl"
                 min={1}
                 max={10}
                 value={adults}
@@ -68,13 +70,13 @@ export default function IncomeInput({ submitIncome }) {
               />
             </div>
             <div className="flex flex-col w-full">
-              <label htmlFor="childrenInput" className="block mb-1">
+              <label htmlFor="childrenInput" className="block mb-1 text-sm">
                 Lapsi:
               </label>
               <input
                 id="childrenInput"
                 type="number"
-                className="block px-4 py-3 w-full text-2xl rounded-lg border border-slate-300 text-primary-800 md:text-3xl"
+                className="block py-4 px-5 w-full rounded-md border-0 ring-1 ring-inset ring-slate-300 focus:ring-primary-600 text-slate-900 placeholder:text-slate-400 focus:ring-[3px] focus:ring-inset focus-within:outline-none text-xl"
                 min={0}
                 max={100}
                 value={children}
@@ -82,16 +84,16 @@ export default function IncomeInput({ submitIncome }) {
               />
             </div>
           </div>
-          <div>
+          <div className="text-sm">
             Kasutame{" "}
             <a
               href="https://en.wikipedia.org/wiki/Equivalisation"
-              className="font-bold text-primary-700 hover:opacity-70"
+              className="font-semibold text-primary-700 hover:opacity-70"
               target="_blank"
               rel="noopener noreferrer"
             >
               OECD ekvivaliseerimist
-              <ArrowTopRightOnSquareIcon className="inline mb-1 ml-1 w-5 h-5" />
+              <ArrowTopRightOnSquareIcon className="inline mb-1 ml-1 w-4 h-4" />
             </a>
             .
           </div>
@@ -111,13 +113,13 @@ export default function IncomeInput({ submitIncome }) {
       <div>
         <button
           type="submit"
-          className="block px-4 py-3 w-full font-bold tracking-tight text-white rounded-lg transition-colors md:text-lg bg-primary-700 hover:bg-primary-800"
+          className="block gap-1.5 justify-center items-center px-4 py-3 mt-4 w-full font-semibold tracking-tight text-center text-white rounded-md shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 disabled:opacity-50 disabled:cursor-not-allowed bg-primary-700 hover:bg-primary-600 focus-visible:outline-primary-700 disabled:hover:bg-primary-600"
         >
           Arvuta!
         </button>
       </div>
       <p className="text-sm text-center">
-        Me ei salvesta teie sisestatud andmeid.
+        Me ei salvesta sinu sisestatud andmeid.
       </p>
     </form>
   );

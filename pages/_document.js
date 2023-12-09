@@ -12,9 +12,9 @@ export default class MyDocument extends Document {
             crossOrigin="true"
           />
           <link
-            href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
             rel="stylesheet"
-          />
+          ></link>
           <link
             rel="apple-touch-icon"
             sizes="180x180"

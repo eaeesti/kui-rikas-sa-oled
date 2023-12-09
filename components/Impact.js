@@ -29,9 +29,7 @@ export default function Impact({ evaluations, donation }) {
     <div className="flex flex-col space-y-8 w-full md:space-y-12">
       {charities.map(({ name, beforeText, afterText, icon: Icon }, i) => (
         <div
-          className={
-            "flex flex-row items-center space-x-8 w-full text-lg md:text-2xl"
-          }
+          className={"flex flex-row items-center space-x-8 w-full text-lg"}
           key={`impact${i}`}
         >
           <div>

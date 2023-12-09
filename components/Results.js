@@ -57,7 +57,7 @@ export default function Results({ income, evaluations }) {
       className="flex flex-col items-center space-y-12 max-w-xl md:space-y-16 animate-fade-in"
     >
       <HorizontalRule />
-      <h2 className="text-2xl text-center md:text-4xl">
+      <h2 className="text-2xl text-center">
         Kuulud{" "}
         <span className="font-bold tracking-tight text-primary-700">
           {formatEstonianNumber(topPercentile)}%
@@ -67,7 +67,7 @@ export default function Results({ income, evaluations }) {
       <div className="w-64 h-64 md:h-96 md:w-96">
         <ResultPieChart percentile={percentile} topPercentile={topPercentile} />
       </div>
-      <div className="text-xl text-center md:text-3xl">
+      <div className="text-xl text-center">
         Oled rikkam kui{" "}
         <span className="font-bold tracking-tight text-primary-700">
           {formatEstonianNumber(percentile)}%
@@ -77,7 +77,7 @@ export default function Results({ income, evaluations }) {
       {timesRicherThanMedian >= 2 && (
         <>
           <HorizontalRule />
-          <h2 className="text-xl text-center md:text-2xl">
+          <h2 className="text-xl text-center">
             Sinu sissetulek on{" "}
             <span className="font-bold tracking-tight text-primary-700">
               {formatEstonianNumber(round(timesRicherThanMedian, 1))} korda
@@ -95,7 +95,7 @@ export default function Results({ income, evaluations }) {
             <div className="text-xs text-center md:text-sm">
               Sissetulekud on teisendatud{" "}
               <a
-                className="font-bold text-primary-700 hover:opacity-70"
+                className="font-semibold text-primary-700 hover:opacity-70"
                 href="https://en.wikipedia.org/wiki/International_dollar"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -107,7 +107,7 @@ export default function Results({ income, evaluations }) {
             </div>
           </div>
           <HorizontalRule />
-          <h2 className="text-xl text-center md:text-2xl">
+          <h2 className="text-xl text-center">
             Kui annetaksid{" "}
             <span className="font-bold tracking-tight text-primary-700">
               {donationPercentage}%
@@ -121,7 +121,7 @@ export default function Results({ income, evaluations }) {
             max={50}
           />
           <HorizontalRule />
-          <h2 className="text-xl text-center md:text-2xl">
+          <h2 className="text-xl text-center">
             ... kuuluksid ikka{" "}
             <span className="font-bold tracking-tight text-primary-700">
               {formatEstonianNumber(afterDonating.topPercentile)}%
@@ -135,7 +135,7 @@ export default function Results({ income, evaluations }) {
               animated={false}
             />
           </div>
-          <div className="text-xl text-center md:text-2xl">
+          <div className="text-xl text-center">
             ... ning sinu sissetulek oleks ikka{" "}
             <span className="font-bold tracking-tight text-primary-700">
               {formatEstonianNumber(
@@ -154,7 +154,7 @@ export default function Results({ income, evaluations }) {
             </div>
           </div>
           <HorizontalRule />
-          <h2 className="text-xl text-center md:text-2xl">
+          <h2 className="text-xl text-center">
             Igal aastal sinu{" "}
             <span className="font-bold tracking-tight text-primary-700">
               {formatEstonianNumber(roundMoney(yearlyDonation))}€
@@ -162,7 +162,7 @@ export default function Results({ income, evaluations }) {
             annetus saaks aidata ...
           </h2>
           <Impact evaluations={evaluations} donation={yearlyDonation} />
-          <div className="text-xl text-center md:text-2xl">
+          <div className="text-xl text-center">
             ... kui annetaksid maailma tõhusaimatele heategevusühingutele.
           </div>
         </>

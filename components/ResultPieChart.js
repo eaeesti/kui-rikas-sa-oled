@@ -1,7 +1,7 @@
 import { ResponsiveContainer, PieChart, Pie, Cell } from "recharts";
 import colors from "tailwindcss/colors";
 
-const COLORS = [colors.slate[400], colors.teal[700]];
+const COLORS = [colors.slate[400], "#047857"];
 const RADIAN = Math.PI / 180;
 
 const PieChartLabel = ({
@@ -24,7 +24,7 @@ const PieChartLabel = ({
       fill={COLORS[index]}
       textAnchor="middle"
       dominantBaseline="central"
-      className="font-bold leading-tight transition-opacity cursor-text md:text-xl animate-fade-in"
+      className="font-semibold leading-tight transition-opacity cursor-text md:text-xl animate-fade-in"
     >
       {name}
     </text>

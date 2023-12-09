@@ -3,7 +3,7 @@ import { fetchEvaluations } from "../utils/impact";
 
 export default function Home({ evaluations }) {
   return (
-    <div className="bg-slate-200">
+    <div>
       <Calculator evaluations={evaluations} />
     </div>
   );
