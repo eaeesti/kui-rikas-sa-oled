@@ -36,7 +36,27 @@ function calculate(income) {
 }
 
 export default function Results({ income, evaluations }) {
-  let [donationPercentage, setDonationPercentage] = useState(10);
+  // https://www.err.ee/1609187365/alampalk-touseb-2024-aastal-820-euroni
+  const minimumIncome = 820;
+  const taxFreeMinimum = 654;
+  const retirementFund = 0.02 * minimumIncome;
+  const unemploymentInsurance = 0.016 * minimumIncome;
+  const incomeTax =
+    (minimumIncome - retirementFund - unemploymentInsurance - taxFreeMinimum) *
+    0.2;
+  const netMinimumIncome =
+    minimumIncome - retirementFund - unemploymentInsurance - incomeTax;
+
+  let defaultDonationPercentage = 1;
+  if (income > netMinimumIncome * 2) {
+    defaultDonationPercentage = 10;
+  } else if (income > netMinimumIncome * 1.5) {
+    defaultDonationPercentage = 5;
+  }
+
+  const [donationPercentage, setDonationPercentage] = useState(
+    defaultDonationPercentage
+  );
 
   const {
     percentile,
@@ -106,65 +126,71 @@ export default function Results({ income, evaluations }) {
               .
             </div>
           </div>
-          <HorizontalRule />
-          <h2 className="text-xl text-center">
-            Kui annetaksid{" "}
-            <span className="font-bold tracking-tight text-primary-700">
-              {donationPercentage}%
-            </span>{" "}
-            oma sissetulekust ...
-          </h2>
-          <SliderInput
-            percentage={donationPercentage}
-            setPercentage={setDonationPercentage}
-            min={1}
-            max={50}
-          />
-          <HorizontalRule />
-          <h2 className="text-xl text-center">
-            ... kuuluksid ikka{" "}
-            <span className="font-bold tracking-tight text-primary-700">
-              {formatEstonianNumber(afterDonating.topPercentile)}%
-            </span>{" "}
-            rikkaimate hulka ...
-          </h2>
-          <div className="w-64 h-64 md:h-96 md:w-96">
-            <ResultPieChart
-              percentile={afterDonating.percentile}
-              topPercentile={afterDonating.topPercentile}
-              animated={false}
-            />
-          </div>
-          <div className="text-xl text-center">
-            ... ning sinu sissetulek oleks ikka{" "}
-            <span className="font-bold tracking-tight text-primary-700">
-              {formatEstonianNumber(
-                round(afterDonating.timesRicherThanMedian, 1)
-              )}{" "}
-              korda suurem
-            </span>{" "}
-            kui maailma mediaan.
-          </div>
-          <div className="flex flex-col space-y-8">
-            <div className="w-80 h-64 sm:w-96 sm:h-80 md:h-96 md:w-144">
-              <ResultBarChart
-                medianIncome={afterDonating.medianIncome}
-                internationalizedIncome={afterDonating.internationalizedIncome}
+          {income > netMinimumIncome && (
+            <>
+              <HorizontalRule />
+              <h2 className="text-xl text-center">
+                Kui annetaksid{" "}
+                <span className="font-bold tracking-tight text-primary-700">
+                  {donationPercentage}%
+                </span>{" "}
+                oma sissetulekust ...
+              </h2>
+              <SliderInput
+                percentage={donationPercentage}
+                setPercentage={setDonationPercentage}
+                min={1}
+                max={50}
               />
-            </div>
-          </div>
-          <HorizontalRule />
-          <h2 className="text-xl text-center">
-            Igal aastal sinu{" "}
-            <span className="font-bold tracking-tight text-primary-700">
-              {formatEstonianNumber(roundMoney(yearlyDonation))}€
-            </span>{" "}
-            annetus saaks aidata ...
-          </h2>
-          <Impact evaluations={evaluations} donation={yearlyDonation} />
-          <div className="text-xl text-center">
-            ... kui annetaksid maailma tõhusaimatele heategevusühingutele.
-          </div>
+              <HorizontalRule />
+              <h2 className="text-xl text-center">
+                ... kuuluksid ikka{" "}
+                <span className="font-bold tracking-tight text-primary-700">
+                  {formatEstonianNumber(afterDonating.topPercentile)}%
+                </span>{" "}
+                rikkaimate hulka ...
+              </h2>
+              <div className="w-64 h-64 md:h-96 md:w-96">
+                <ResultPieChart
+                  percentile={afterDonating.percentile}
+                  topPercentile={afterDonating.topPercentile}
+                  animated={false}
+                />
+              </div>
+              <div className="text-xl text-center">
+                ... ning sinu sissetulek oleks ikka{" "}
+                <span className="font-bold tracking-tight text-primary-700">
+                  {formatEstonianNumber(
+                    round(afterDonating.timesRicherThanMedian, 1)
+                  )}{" "}
+                  korda suurem
+                </span>{" "}
+                kui maailma mediaan.
+              </div>
+              <div className="flex flex-col space-y-8">
+                <div className="w-80 h-64 sm:w-96 sm:h-80 md:h-96 md:w-144">
+                  <ResultBarChart
+                    medianIncome={afterDonating.medianIncome}
+                    internationalizedIncome={
+                      afterDonating.internationalizedIncome
+                    }
+                  />
+                </div>
+              </div>
+              <HorizontalRule />
+              <h2 className="text-xl text-center">
+                Igal aastal sinu{" "}
+                <span className="font-bold tracking-tight text-primary-700">
+                  {formatEstonianNumber(roundMoney(yearlyDonation))}€
+                </span>{" "}
+                annetus saaks aidata ...
+              </h2>
+              <Impact evaluations={evaluations} donation={yearlyDonation} />
+              <div className="text-xl text-center">
+                ... kui annetaksid maailma tõhusaimatele heategevusühingutele.
+              </div>
+            </>
+          )}
         </>
       )}
       <HorizontalRule />
