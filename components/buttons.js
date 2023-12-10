@@ -1,3 +1,4 @@
+import { usePlausible } from "next-plausible";
 import {
   fixedEncodeURIComponent,
   openPopup,
@@ -5,12 +6,17 @@ import {
 } from "../utils/utils";
 import { FacebookIcon, LinkedInIcon, TwitterIcon } from "./icons";
 
-function ShareButton({ text, color, Icon, url }) {
+function ShareButton({ text, color, Icon, url, name }) {
+  const plausible = usePlausible();
+
   return (
     <a
       href={url}
       target="_blank"
-      onClick={preventingDefault(() => openPopup(url, text))}
+      onClick={preventingDefault(() => {
+        plausible(`${name}-share-click`);
+        openPopup(url, text);
+      })}
       rel="noreferrer"
       className={`flex flex-row justify-center items-center px-4 py-3 space-x-4 font-semibold tracking-tight text-white whitespace-nowrap rounded-md transition-opacity select-none sm:text-xl sm:space-x-5 hover:opacity-90`}
       style={{ backgroundColor: color }}
@@ -31,6 +37,7 @@ export function FacebookShareButton({ buttonText, url }) {
       color="#4267B2"
       Icon={FacebookIcon}
       url={shareUrl}
+      name="facebook"
     />
   );
 }
@@ -47,6 +54,7 @@ export function TwitterShareButton({ buttonText, url, tweet, hashtags }) {
       color="#1DA1F2"
       Icon={TwitterIcon}
       url={shareUrl}
+      name="twitter"
     />
   );
 }
@@ -61,6 +69,7 @@ export function LinkedInShareButton({ buttonText, url }) {
       color="#0077B5"
       Icon={LinkedInIcon}
       url={shareUrl}
+      name="linkedin"
     />
   );
 }

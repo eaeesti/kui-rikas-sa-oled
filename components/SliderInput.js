@@ -1,4 +1,8 @@
+import { usePlausible } from "next-plausible";
+
 export default function SliderInput({ percentage, setPercentage, min, max }) {
+  const plausible = usePlausible();
+
   return (
     <div className="flex flex-row space-x-4 w-full">
       <div>{min}%</div>
@@ -14,6 +18,8 @@ export default function SliderInput({ percentage, setPercentage, min, max }) {
           min={min}
           max={max}
           onInput={(event) => setPercentage(event.target.value)}
+          onMouseUp={() => plausible("slider-change")}
+          onTouchEnd={() => plausible("slider-change")}
           value={percentage}
         />
       </div>
