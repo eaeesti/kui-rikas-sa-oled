@@ -24,14 +24,6 @@ function calculate(income) {
 
   const timesRicherThanMedian = internationalizedIncome / medianIncome;
 
-  console.table({
-    percentile,
-    topPercentile,
-    medianIncome,
-    internationalizedIncome,
-    timesRicherThanMedian,
-  });
-
   return {
     percentile,
     topPercentile,
